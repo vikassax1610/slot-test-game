@@ -1,4 +1,5 @@
 import { Background } from "../components/Background.js";
+import { GameBoard } from "../components/GameBoard.js";
 import { GAME_CONFIG } from "../config/GameConfig.js";
 
 export class Game {
@@ -9,10 +10,14 @@ export class Game {
       app,
       GAME_CONFIG.background.path
     );
+
+    this.gameBoard = new GameBoard(app);
   }
 
   async init() {
     await this.background.load();
+
+    this.gameBoard.init();
 
     this.setupResize();
   }

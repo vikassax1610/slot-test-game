@@ -25,7 +25,6 @@ export class Background {
 
     const textureWidth = this.sprite.texture.width;
     const textureHeight = this.sprite.texture.height;
-
     // Scale like CSS background-size: cover
     const scale = Math.max(
       screenWidth / textureWidth,
