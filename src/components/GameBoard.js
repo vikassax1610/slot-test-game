@@ -11,6 +11,8 @@ export class GameBoard {
     this.app.stage.addChild(this.container);
 
     this.createGrid();
+    this.resize();
+
   }
 
   createGrid() {
@@ -36,4 +38,20 @@ export class GameBoard {
       }
     }
   }
+  resize() {
+    const { columns, rows, symbolSize, gap } = GAME_CONFIG.grid;
+
+    const boardWidth =
+      columns * symbolSize + (columns - 1) * gap;
+
+    const boardHeight =
+      rows * symbolSize + (rows - 1) * gap;
+
+    this.container.x =
+      (this.app.screen.width - boardWidth) / 2;
+
+    this.container.y =
+      (this.app.screen.height - boardHeight) / 2;
+  }
 }
+

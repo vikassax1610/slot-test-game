@@ -25,6 +25,7 @@ export class Game {
   setupResize() {
     window.addEventListener("resize", () => {
       this.background.resize();
+      this.gameBoard.resize();
     });
   }
 }
