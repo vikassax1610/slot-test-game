@@ -6,7 +6,7 @@ export const GAME_CONFIG = {
   grid: {
     columns: 6,
     rows: 6,
-    symbolSize: 100,
+    symbolSize: 90,
     gap: 5,
   },
 };
