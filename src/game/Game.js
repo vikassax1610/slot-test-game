@@ -1,6 +1,9 @@
+import { Assets } from "pixi.js";
+
 import { Background } from "../components/Background.js";
 import { GameBoard } from "../components/GameBoard.js";
-import { GAME_CONFIG } from "../config/GameConfig.js";
+import { GAME_CONFIG } from "../config/gameConfig.js";
+import { SYMBOLS } from "../config/symbols.js";
 
 export class Game {
   constructor(app) {
@@ -11,11 +14,25 @@ export class Game {
       GAME_CONFIG.background.path
     );
 
-    this.gameBoard = new GameBoard(app);
+    this.gameBoard = null;
+    this.symbolTextures = {};
+  }
+
+  async loadSymbolTextures() {
+    for (const [name, path] of Object.entries(SYMBOLS)) {
+      this.symbolTextures[name] = await Assets.load(path);
+    }
   }
 
   async init() {
     await this.background.load();
+
+    await this.loadSymbolTextures();
+
+    this.gameBoard = new GameBoard(
+      this.app,
+      this.symbolTextures
+    );
 
     this.gameBoard.init();
 
